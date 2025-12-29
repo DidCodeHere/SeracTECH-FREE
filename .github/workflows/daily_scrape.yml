@@ -31,7 +31,7 @@ jobs:
       env:
         SCRAPER_MOCK_MODE: "false"
         SCRAPER_DAYS: "1" # Daily incremental scrape
-        SCRAPER_OUTPUT_DIR: "frontend/public/data" # Output directly to frontend
+        SCRAPER_OUTPUT_DIR: "public/data" # Output directly to public/data in root
       run: |
         python -m scraper.main
 
@@ -39,5 +39,5 @@ jobs:
       run: |
         git config --global user.name 'GitHub Action'
         git config --global user.email 'action@github.com'
-        git add frontend/public/data
+        git add public/data
         git diff --quiet && git diff --staged --quiet || (git commit -m "Update planning data [skip ci]" && git push)

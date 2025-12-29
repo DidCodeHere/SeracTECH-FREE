@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 # Configuration - can be overridden by environment variables
 MOCK_MODE = os.environ.get('SCRAPER_MOCK_MODE', 'false').lower() == 'true'
-OUTPUT_DIR = os.environ.get('SCRAPER_OUTPUT_DIR', 'frontend/public/data') # Default to frontend public dir
+OUTPUT_DIR = os.environ.get('SCRAPER_OUTPUT_DIR', 'public/data') # Default to public/data in root
 DAYS_TO_SCRAPE = int(os.environ.get('SCRAPER_DAYS', '30'))
 
 # UK Councils to scrape

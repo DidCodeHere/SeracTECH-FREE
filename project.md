@@ -97,7 +97,47 @@ scraper/
 
 - **Framework:** React + Vite + TypeScript.
 - **Styling:** Tailwind CSS.
-- **State Management:**
+- **State Management:** Zustand (Cart) + TanStack Query (Data Fetching).
+- **Deployment:** GitHub Pages (Root directory).
+
+## 7. Current Status (Dec 2025)
+
+- **Scraper:**
+  - ✅ Architecture complete (Strategy Pattern).
+  - ✅ Idox Scraper working (Weekly List fallback).
+  - ✅ Planning Data API working (Doncaster).
+  - ✅ Nationwide coverage configured (Major cities + London).
+  - ✅ GitHub Actions workflow configured for daily updates.
+- **Frontend:**
+  - ✅ Search & Filtering working.
+  - ✅ Map View implemented.
+  - ✅ Cart & Export functionality working.
+  - ✅ Moved to root for GitHub Pages compatibility.
+- **Data:**
+  - ✅ Real data ingestion verified.
+  - ✅ Data stored in `public/data` for direct access.
+
+## 8. How to Run
+
+**Local Development:**
+
+```bash
+# Install dependencies
+npm install
+
+# Run frontend
+npm run dev
+
+# Run scraper manually
+python -m scraper.main
+```
+
+**Deployment:**
+
+1. Push to `main` branch.
+2. GitHub Action `Daily Scrape` runs automatically at 02:00 UTC.
+3. GitHub Pages serves the content from the root (configure in repo settings).
+
   - **Server State:** TanStack Query (Caching, Deduping, Background Refetch).
   - **Client State:** Zustand (Cart/Selection management).
 - **Mapping:** React Leaflet + Supercluster.
