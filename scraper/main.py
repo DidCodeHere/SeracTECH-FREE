@@ -5,6 +5,7 @@ import json
 from datetime import datetime, timedelta
 from scraper.idox import IdoxScraper
 from scraper.northgate import NorthgateScraper
+from scraper.planning_api import PlanningDataAPIScraper, COUNCIL_ORG_ENTITIES
 from scraper.geocoder import Geocoder
 
 # Configure logging
@@ -15,12 +16,99 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Configuration - can be overridden by environment variables
-MOCK_MODE = os.environ.get('SCRAPER_MOCK_MODE', 'true').lower() == 'true'
-OUTPUT_DIR = os.environ.get('SCRAPER_OUTPUT_DIR', 'data')
+MOCK_MODE = os.environ.get('SCRAPER_MOCK_MODE', 'false').lower() == 'true'
+OUTPUT_DIR = os.environ.get('SCRAPER_OUTPUT_DIR', 'frontend/public/data') # Default to frontend public dir
 DAYS_TO_SCRAPE = int(os.environ.get('SCRAPER_DAYS', '30'))
 
 # UK Councils to scrape
 COUNCILS = [
+    # --- API Accessible Councils ---
+    {
+        "name": "Doncaster",
+        "type": "api",
+        "enabled": True
+    },
+    
+    # --- Major Cities (Idox) ---
+    {
+        "name": "Leeds",
+        "type": "idox",
+        "url": "https://publicaccess.leeds.gov.uk/online-applications",
+        "enabled": True
+    },
+    {
+        "name": "Manchester",
+        "type": "idox",
+        "url": "https://pa.manchester.gov.uk/online-applications",
+        "enabled": True
+    },
+    # Westminster removed due to connection issues
+    {
+        "name": "Bristol",
+        "type": "idox",
+        "url": "https://planningonline.bristol.gov.uk/online-applications",
+        "enabled": True
+    },
+
+    # --- London Boroughs (Idox) ---
+    {
+        "name": "Lambeth",
+        "type": "idox",
+        "url": "https://planning.lambeth.gov.uk/online-applications",
+        "enabled": True
+    },
+    {
+        "name": "Tower Hamlets",
+        "type": "idox",
+        "url": "https://development.towerhamlets.gov.uk/online-applications",
+        "enabled": True
+    },
+    {
+        "name": "Bromley",
+        "type": "idox",
+        "url": "https://searchapplications.bromley.gov.uk/online-applications",
+        "enabled": True
+    },
+    {
+        "name": "Croydon",
+        "type": "idox",
+        "url": "https://publicaccess3.croydon.gov.uk/online-applications",
+        "enabled": True
+    },
+    {
+        "name": "Ealing",
+        "type": "idox",
+        "url": "https://pam.ealing.gov.uk/online-applications",
+        "enabled": True
+    },
+    {
+        "name": "Greenwich",
+        "type": "idox",
+        "url": "https://planning.royalgreenwich.gov.uk/online-applications",
+        "enabled": True
+    },
+
+    # --- Other Major Cities (Idox) ---
+    {
+        "name": "Nottingham",
+        "type": "idox",
+        "url": "https://publicaccess.nottinghamcity.gov.uk/online-applications",
+        "enabled": True
+    },
+    {
+        "name": "Glasgow",
+        "type": "idox",
+        "url": "https://publicaccess.glasgow.gov.uk/online-applications",
+        "enabled": True
+    },
+    {
+        "name": "Newcastle",
+        "type": "idox",
+        "url": "https://publicaccessapplications.newcastle.gov.uk/online-applications",
+        "enabled": True
+    },
+
+    # --- Local Councils (Hampshire/South) ---
     {
         "name": "Portsmouth",
         "type": "idox",
@@ -29,28 +117,45 @@ COUNCILS = [
     },
     {
         "name": "Southampton", 
-        "type": "northgate",
-        "url": "https://planningexplorer.southampton.gov.uk",
+        "type": "idox",
+        "url": "https://planningpublicaccess.southampton.gov.uk/online-applications",
         "enabled": True
     },
     {
         "name": "Fareham",
         "type": "northgate", 
-        "url": "https://planningpublicaccess.fareham.gov.uk",
-        "enabled": False  # Disabled by default
+        "url": "http://www.fareham.gov.uk/casetrackerplanning",
+        "enabled": True
     },
     {
         "name": "Havant",
         "type": "idox",
         "url": "https://planningpublicaccess.havant.gov.uk/online-applications",
-        "enabled": False
+        "enabled": True
     },
     {
         "name": "Gosport",
+        "type": "idox", 
+        "url": "https://publicaccess.gosport.gov.uk/online-applications",
+        "enabled": True
+    },
+    {
+        "name": "Winchester",
         "type": "idox",
-        "url": "https://publicaccess.gosport.gov.uk/online-applications", 
+        "url": "https://planningapps.winchester.gov.uk/online-applications",
         "enabled": False
-    }
+    },
+    {
+        "name": "Eastleigh",
+        "type": "idox",
+        "url": "https://planning.eastleigh.gov.uk/s/public-register", # Salesforce?
+        "enabled": False
+    },
+    {
+        "name": "Buckinghamshire",
+        "type": "api",
+        "enabled": False # Replaced by Doncaster
+    },
 ]
 
 
@@ -101,10 +206,12 @@ async def scrape_council(council: dict, geocoder: Geocoder, metadata: dict) -> i
     end_date = datetime.now().strftime('%Y-%m-%d')
     
     # Create appropriate scraper
-    if council["type"] == "idox":
-        scraper = IdoxScraper(council["url"], council_name, mock_mode=MOCK_MODE)
+    if council["type"] == "api":
+        scraper = PlanningDataAPIScraper(council_name, mock_mode=MOCK_MODE)
+    elif council["type"] == "idox":
+        scraper = IdoxScraper(council.get("url", ""), council_name, mock_mode=MOCK_MODE)
     elif council["type"] == "northgate":
-        scraper = NorthgateScraper(council["url"], council_name, mock_mode=MOCK_MODE)
+        scraper = NorthgateScraper(council.get("url", ""), council_name, mock_mode=MOCK_MODE)
     else:
         logger.warning(f"Unknown scraper type: {council['type']}")
         return 0
