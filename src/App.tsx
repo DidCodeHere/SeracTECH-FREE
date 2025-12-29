@@ -22,7 +22,7 @@ function App() {
         <header className="bg-white shadow-sm border-b-4 border-orange-500">
           <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center gap-4">
             <img 
-              src="./logo.png" 
+              src={`${import.meta.env.BASE_URL}logo.png`}
               alt="SeracTECH-FREE Logo - Free UK Planning Application Search" 
               className="h-12 w-12 object-contain"
             />
@@ -54,7 +54,7 @@ function App() {
             <div className="grid md:grid-cols-3 gap-8">
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <img src="./logo.png" alt="SeracTECH-FREE" className="h-10 w-10" />
+                  <img src={`${import.meta.env.BASE_URL}logo.png`} alt="SeracTECH-FREE" className="h-10 w-10" />
                   <span className="font-bold text-xl">SeracTECH-FREE</span>
                 </div>
                 <p className="text-gray-400 text-sm">

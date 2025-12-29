@@ -19,8 +19,9 @@ const fetchPlanningData = async (sector: string): Promise<PlanningApplication[]>
   const area = sector.substring(0, 2).replace(/\d/, '');
   
   // Construct the URL to the static JSON file
-  // In production (GitHub Pages), this will be relative to the base URL
-  const url = `/data/${area}/${sector}.json`;
+  // Use import.meta.env.BASE_URL for GitHub Pages compatibility
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  const url = `${baseUrl}data/${area}/${sector}.json`;
   
   const response = await fetch(url);
   
@@ -36,8 +37,9 @@ const fetchPlanningData = async (sector: string): Promise<PlanningApplication[]>
 
 // Fetch all applications from all areas
 const fetchAllPlanningData = async (): Promise<PlanningApplication[]> => {
+  const baseUrl = import.meta.env.BASE_URL || '/';
   // Fetch the metadata to find all available areas
-  const metadataResponse = await fetch('/data/_metadata.json');
+  const metadataResponse = await fetch(`${baseUrl}data/_metadata.json`);
   if (!metadataResponse.ok) {
     return [];
   }
@@ -57,7 +59,7 @@ const fetchAllPlanningData = async (): Promise<PlanningApplication[]> => {
       const sectorPromises = sectorNumbers.map(async (num) => {
         const sector = `${area}${num}`;
         try {
-          const response = await fetch(`/data/${area}/${sector}.json`);
+          const response = await fetch(`${baseUrl}data/${area}/${sector}.json`);
           if (response.ok) {
             return await response.json() as PlanningApplication[];
           }
