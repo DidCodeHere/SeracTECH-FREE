@@ -1,7 +1,26 @@
 {
-  "name": "seractech-frontend",
+  "name": "seractech-free",
+  "version": "1.0.0",
+  "description": "Free, open-source UK planning application search and construction lead generation platform for builders, contractors, and tradespeople",
+  "author": "DidCodeHere",
+  "license": "MIT",
+  "homepage": "https://didcodehere.github.io/SeracTECH-FREE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DidCodeHere/SeracTECH-FREE.git"
+  },
+  "keywords": [
+    "planning-applications",
+    "construction-leads",
+    "uk-planning",
+    "building-permits",
+    "council-planning",
+    "open-source",
+    "free",
+    "builders",
+    "contractors"
+  ],
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

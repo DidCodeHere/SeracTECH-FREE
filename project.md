@@ -138,8 +138,8 @@ python -m scraper.main
 2. GitHub Action `Daily Scrape` runs automatically at 02:00 UTC.
 3. GitHub Pages serves the content from the root (configure in repo settings).
 
-  - **Server State:** TanStack Query (Caching, Deduping, Background Refetch).
-  - **Client State:** Zustand (Cart/Selection management).
+- **Server State:** TanStack Query (Caching, Deduping, Background Refetch).
+- **Client State:** Zustand (Cart/Selection management).
 - **Mapping:** React Leaflet + Supercluster.
 - **Export:** `papaparse` (CSV) and `jspdf` (PDF) running in Web Workers.
 

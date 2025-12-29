@@ -10,9 +10,14 @@ export const Search: React.FC<SearchProps> = ({ onSearch }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (input.trim().length >= 3) {
+    if (input.trim().length >= 2) {
       onSearch(input.trim(), radius);
     }
+  };
+
+  const handleShowAll = () => {
+    setInput('ALL');
+    onSearch('ALL', 9999); // Large radius to include everything
   };
 
   return (
@@ -42,8 +47,20 @@ export const Search: React.FC<SearchProps> = ({ onSearch }) => {
             value={radius}
             onChange={(e) => setRadius(Number(e.target.value))}
             className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            disabled={input.toUpperCase() === 'ALL'}
           />
-          <span className="text-sm font-medium text-blue-600 min-w-[50px]">{radius} km</span>
+          <span className="text-sm font-medium text-blue-600 min-w-[50px]">
+            {input.toUpperCase() === 'ALL' ? '∞' : `${radius} km`}
+          </span>
+        </div>
+        <div className="flex justify-center">
+          <button
+            type="button"
+            onClick={handleShowAll}
+            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium text-sm"
+          >
+            🌍 Show All Applications
+          </button>
         </div>
       </form>
     </div>

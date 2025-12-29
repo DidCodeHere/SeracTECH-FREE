@@ -37,12 +37,15 @@ export const ResultsList: React.FC<ResultsListProps> = ({ postcode, radiusKm }) 
   const [endDate, setEndDate] = useState('');
   const [selectedApp, setSelectedApp] = useState<PlanningApplication | null>(null);
 
-  // Filter applications by radius from the searched postcode
+  // Check if it's a "show all" request
+  const isShowAll = postcode.toUpperCase() === 'ALL';
+
+  // Filter applications by radius from the searched postcode (skip for "show all")
   const radiusFilteredData = useRadiusFilter(
     data || [],
-    postcodeData?.latitude || null,
-    postcodeData?.longitude || null,
-    radiusKm
+    isShowAll ? null : (postcodeData?.latitude || null),
+    isShowAll ? null : (postcodeData?.longitude || null),
+    isShowAll ? 99999 : radiusKm
   );
   
   // Apply status filter
@@ -81,7 +84,9 @@ export const ResultsList: React.FC<ResultsListProps> = ({ postcode, radiusKm }) 
   if (isLoading) {
     return (
       <div className="text-center p-8 text-gray-500">
-        Loading planning applications for {postcode}...
+        {isShowAll 
+          ? 'Loading all planning applications...' 
+          : `Loading planning applications for ${postcode}...`}
       </div>
     );
   }
@@ -97,7 +102,9 @@ export const ResultsList: React.FC<ResultsListProps> = ({ postcode, radiusKm }) 
   if (!filteredData || filteredData.length === 0) {
     return (
       <div className="text-center p-8 text-gray-500">
-        No planning applications found within {radiusKm}km of {postcode}.
+        {isShowAll 
+          ? 'No planning applications found in the database.' 
+          : `No planning applications found within ${radiusKm}km of ${postcode}.`}
       </div>
     );
   }
@@ -110,8 +117,9 @@ export const ResultsList: React.FC<ResultsListProps> = ({ postcode, radiusKm }) 
             Found {filteredData.length} Applications
           </h2>
           <p className="text-sm text-gray-500">
-            Within {radiusKm}km of {postcode}
-            {postcodeData && ` (${postcodeData.admin_district})`}
+            {isShowAll 
+              ? 'Showing all applications nationwide' 
+              : `Within ${radiusKm}km of ${postcode}${postcodeData ? ` (${postcodeData.admin_district})` : ''}`}
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
