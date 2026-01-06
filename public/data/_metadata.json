@@ -1,20 +1,20 @@
 {
   "portsmouth": {
-    "last_scrape": "2026-01-05",
-    "last_count": 20,
-    "total_scraped": 212
+    "last_scrape": "2026-01-06",
+    "last_count": 3,
+    "total_scraped": 215
   },
   "southampton": {
-    "last_scrape": "2025-12-29",
-    "last_count": 1914,
-    "total_scraped": 1926
+    "last_scrape": "2026-01-06",
+    "last_count": 2,
+    "total_scraped": 1928
   },
-  "last_run": "2026-01-05T03:50:00.846366",
-  "last_run_total": 1981,
+  "last_run": "2026-01-06T03:24:56.071841",
+  "last_run_total": 1934,
   "fareham": {
-    "last_scrape": "2026-01-05",
+    "last_scrape": "2026-01-06",
     "last_count": 3,
-    "total_scraped": 37
+    "total_scraped": 40
   },
   "havant": {
     "last_scrape": "2025-12-29",
@@ -32,9 +32,9 @@
     "total_scraped": 3828
   },
   "doncaster": {
-    "last_scrape": "2026-01-05",
+    "last_scrape": "2026-01-06",
     "last_count": 1914,
-    "total_scraped": 17226
+    "total_scraped": 19140
   },
   "leeds": {
     "last_scrape": "2025-12-29",
@@ -42,14 +42,14 @@
     "total_scraped": 670
   },
   "manchester": {
-    "last_scrape": "2025-12-29",
-    "last_count": 288,
-    "total_scraped": 288
+    "last_scrape": "2026-01-06",
+    "last_count": 2,
+    "total_scraped": 290
   },
   "lambeth": {
-    "last_scrape": "2026-01-05",
-    "last_count": 8,
-    "total_scraped": 341
+    "last_scrape": "2026-01-06",
+    "last_count": 2,
+    "total_scraped": 343
   },
   "tower_hamlets": {
     "last_scrape": "2025-12-29",
@@ -57,14 +57,14 @@
     "total_scraped": 163
   },
   "ealing": {
-    "last_scrape": "2026-01-05",
-    "last_count": 3,
-    "total_scraped": 329
+    "last_scrape": "2026-01-06",
+    "last_count": 2,
+    "total_scraped": 331
   },
   "greenwich": {
-    "last_scrape": "2026-01-05",
-    "last_count": 33,
-    "total_scraped": 336
+    "last_scrape": "2026-01-06",
+    "last_count": 6,
+    "total_scraped": 342
   },
   "croydon": {
     "last_scrape": "2026-01-04",
