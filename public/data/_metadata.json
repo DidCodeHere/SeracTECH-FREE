@@ -1,20 +1,20 @@
 {
   "portsmouth": {
-    "last_scrape": "2026-01-18",
+    "last_scrape": "2026-01-19",
     "last_count": 14,
-    "total_scraped": 317
+    "total_scraped": 331
   },
   "southampton": {
-    "last_scrape": "2026-01-18",
+    "last_scrape": "2026-01-19",
     "last_count": 13,
-    "total_scraped": 2048
+    "total_scraped": 2061
   },
-  "last_run": "2026-01-18T03:32:23.834737",
-  "last_run_total": 2269,
+  "last_run": "2026-01-19T03:46:36.008946",
+  "last_run_total": 2248,
   "fareham": {
-    "last_scrape": "2026-01-18",
+    "last_scrape": "2026-01-19",
     "last_count": 3,
-    "total_scraped": 76
+    "total_scraped": 79
   },
   "havant": {
     "last_scrape": "2025-12-29",
@@ -22,9 +22,9 @@
     "total_scraped": 4
   },
   "gosport": {
-    "last_scrape": "2026-01-18",
+    "last_scrape": "2026-01-19",
     "last_count": 6,
-    "total_scraped": 65
+    "total_scraped": 71
   },
   "buckinghamshire": {
     "last_scrape": "2025-12-29",
@@ -32,24 +32,24 @@
     "total_scraped": 3828
   },
   "doncaster": {
-    "last_scrape": "2026-01-18",
+    "last_scrape": "2026-01-19",
     "last_count": 1914,
-    "total_scraped": 42108
+    "total_scraped": 44022
   },
   "leeds": {
-    "last_scrape": "2026-01-18",
+    "last_scrape": "2026-01-19",
     "last_count": 152,
-    "total_scraped": 1555
+    "total_scraped": 1707
   },
   "manchester": {
-    "last_scrape": "2026-01-18",
+    "last_scrape": "2026-01-19",
     "last_count": 29,
-    "total_scraped": 449
+    "total_scraped": 478
   },
   "lambeth": {
-    "last_scrape": "2026-01-18",
+    "last_scrape": "2026-01-19",
     "last_count": 33,
-    "total_scraped": 549
+    "total_scraped": 582
   },
   "tower_hamlets": {
     "last_scrape": "2025-12-29",
@@ -57,14 +57,14 @@
     "total_scraped": 163
   },
   "ealing": {
-    "last_scrape": "2026-01-18",
+    "last_scrape": "2026-01-19",
     "last_count": 22,
-    "total_scraped": 463
+    "total_scraped": 485
   },
   "greenwich": {
-    "last_scrape": "2026-01-18",
+    "last_scrape": "2026-01-19",
     "last_count": 62,
-    "total_scraped": 936
+    "total_scraped": 998
   },
   "croydon": {
     "last_scrape": "2026-01-18",
